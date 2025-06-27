@@ -32,8 +32,8 @@ const formSchema = z.object({
   budget: z.string().min(1, 'Please select a budget range'),
   preferredTime: z.string().optional(),
   message: z.string().min(10, 'Message must be at least 10 characters').max(500),
-  agreeToPrivacy: z.boolean().refine(val => val === true, {
-    message: 'You must agree to the privacy policy',
+  agreeToPrivacy: z.literal(true, {
+    errorMap: () => ({ message: 'You must agree to the privacy policy' }),
   }),
 });
 
@@ -263,7 +263,7 @@ export default function Contact() {
 
               {/* Privacy Agreement */}
               <div className="flex items-start gap-3">
-                <Checkbox id="agreeToPrivacy" onCheckedChange={(checked) => setValue('agreeToPrivacy', !!checked)} />
+                <Checkbox id="agreeToPrivacy" {...register('agreeToPrivacy')} />
                 <Label htmlFor="agreeToPrivacy" className="text-sm text-gray-600">
                   I agree to the{' '}
                   <a href="/privacy" className="text-indigo-600 hover:underline">privacy policy</a>{' '}

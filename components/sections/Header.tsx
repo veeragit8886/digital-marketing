@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, ChevronUp } from 'lucide-react';
-import Images from "../Images/logo.png"
+import Images from "../../app/public/Images/logo.png"
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
